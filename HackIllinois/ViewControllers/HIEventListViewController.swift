@@ -65,6 +65,7 @@ extension HIEventListViewController {
     override func refresh(_ sender: UIRefreshControl) {
         super.refresh(sender)
         HIEventDataSource.refresh(completion: endRefreshing)
+        tableView?.reloadData()
     }
 }
 
