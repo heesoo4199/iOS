@@ -28,6 +28,10 @@ class HIHomeViewController: HIEventListViewController {
         ]
 
         fetchRequest.predicate = currentPredicate()
+        
+        if let fetchLimit = currentFetchLimit() {
+            fetchRequest.fetchLimit = fetchLimit
+        }
 
         let fetchedResultsController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
@@ -50,8 +54,7 @@ class HIHomeViewController: HIEventListViewController {
         let happeningNowPredicate = NSPredicate(format: "(startTime < now()) AND (endTime > now())")
         dataStore.append((displayText: "HAPPENING NOW ", predicate: happeningNowPredicate))
 
-        let inOneHour = Date(timeIntervalSinceNow: 3600)
-        let upcomingPredicate = NSPredicate(format: "(startTime < %@) AND (startTime > now())", inOneHour as NSDate)
+        let upcomingPredicate = NSPredicate(format: "(startTime > now())")
         dataStore.append((displayText: "UPCOMING", predicate: upcomingPredicate))
 
         return dataStore
@@ -94,6 +97,10 @@ extension HIHomeViewController {
 
     func currentPredicate() -> NSPredicate {
         return dataStore[currentTab].predicate
+    }
+    
+    func currentFetchLimit() -> Int? {
+        return currentTab == 1 ? 2 : nil
     }
 
     func animateReload() {
