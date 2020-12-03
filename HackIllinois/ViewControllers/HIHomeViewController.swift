@@ -28,10 +28,6 @@ class HIHomeViewController: HIEventListViewController {
         ]
 
         fetchRequest.predicate = currentPredicate()
-        
-        if let fetchLimit = currentFetchLimit() {
-            fetchRequest.fetchLimit = fetchLimit
-        }
 
         let fetchedResultsController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
@@ -93,6 +89,9 @@ extension HIHomeViewController {
 
     func updatePredicate() {
         fetchedResultsController.fetchRequest.predicate = currentPredicate()
+        if let fetchLimit = currentFetchLimit() {
+            fetchedResultsController.fetchRequest.fetchLimit = fetchLimit
+        }
     }
 
     func currentPredicate() -> NSPredicate {
