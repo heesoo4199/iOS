@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Install SwiftLint v0.40.3
+    - name: Install SwiftLint v0.41.0
       run: |
         curl -L https://github.com/realm/SwiftLint/releases/download/0.41.0/portable_swiftlint.zip > portable_swiftlint.zip
         mkdir portable
