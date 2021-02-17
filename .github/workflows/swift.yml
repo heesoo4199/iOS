@@ -7,8 +7,6 @@ on:
     branches: [ dev, master ]
 
 jobs:
-  # TODO: Linting does not work still since it 
-  # doesn't seem to be using the .swiftlint.yml file
   
   lint:
     runs-on: macos-latest
