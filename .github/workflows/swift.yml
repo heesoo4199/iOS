@@ -16,11 +16,12 @@ jobs:
     
     - name: Install SwiftLint v0.40.3
       run: |
-        curl -O https://github.com/realm/SwiftLint/releases/download/0.40.3/portable_swiftlint.zip
-        unzip portable_swiftlint.zip portable
+        curl -o portable.zip https://github.com/realm/SwiftLint/releases/download/0.40.3/portable_swiftlint.zip
+        ls -a
+        unzip portable.zip
         mv portable/swiftlint ./swiftlint-custom
-        rm -r portable
-        rm portable_swiftlint.zip
+        rm -rf portable
+        rm -f portable.zip
       
     - name: Display the path
       run: ls -a
