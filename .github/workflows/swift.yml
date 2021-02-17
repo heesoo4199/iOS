@@ -13,22 +13,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-  
+    
+    - name: Install SwiftLint v0.40.3
+      run: mint install realm/SwiftLint@0.40.3
+      
     - name: Display the path
       run: ls -a
       shell: bash
-  
-    - name: Install SwiftLint v0.40.3
-      run: git clone https://github.com/realm/SwiftLint.git && cd SwiftLint && git checkout 0.40.3 && make install
 
     - name: Lint
       run: swiftlint lint --config .swiftlint.yml --strict
 
-  build:
-    runs-on: macos-latest
+#   build:
+#     runs-on: macos-latest
+
+#     steps:
+#     - uses: actions/checkout@v2
     
-    steps:
-    - uses: actions/checkout@v2
-    
-    - name: Build
-      run: xcodebuild clean build -project HackIllinois.xcodeproj -scheme HackIllinois -destination "platform=iOS Simulator,name=iPhone 11" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
+#     - name: Build
+#       run: xcodebuild clean build -project HackIllinois.xcodeproj -scheme HackIllinois -destination "platform=iOS Simulator,name=iPhone 11" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
