@@ -14,17 +14,19 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - uses: fabasoad/setup-mint-action@main
-    
     - name: Install SwiftLint v0.40.3
-      run: mint install realm/SwiftLint@0.40.3
+      run: |
+        curl -O portable.zip https://github.com/realm/SwiftLint/releases/download/0.40.3/portable_swiftlint.zip
+        unzip portable.zip portable
+        mv portable/swiftlint ./swiftlint-custom
+        rm -r portable
       
     - name: Display the path
       run: ls -a
       shell: bash
 
     - name: Lint
-      run: swiftlint lint --config .swiftlint.yml --strict
+      run: ./swiftlint-custom lint --config .swiftlint.yml --strict
 
 #   build:
 #     runs-on: macos-latest
