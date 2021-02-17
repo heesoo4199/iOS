@@ -16,7 +16,7 @@ jobs:
     
     - name: Install SwiftLint v0.40.3
       run: |
-        curl -L https://github.com/realm/SwiftLint/releases/download/0.40.3/portable_swiftlint.zip > portable_swiftlint.zip
+        curl -L https://github.com/realm/SwiftLint/releases/download/0.41.0/portable_swiftlint.zip > portable_swiftlint.zip
         mkdir portable
         unzip portable_swiftlint.zip -d portable/
         rm -f portable_swiftlint.zip
