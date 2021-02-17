@@ -16,18 +16,21 @@ jobs:
     
     - name: Install SwiftLint v0.40.3
       run: |
-        curl -L https://github.com/realm/SwiftLint/releases/download/0.40.3/portable_swiftlint.zip > portable.zip
-        unzip portable.zip
-        mv portable/swiftlint ./swiftlint-custom
-        rm -rf portable
-        rm -f portable.zip
+        rm -rf portable_swiftlint
+        curl -L https://github.com/realm/SwiftLint/releases/download/0.40.3/portable_swiftlint.zip > portable_swiftlint.zip
+        unzip portable_swiftlint.zip
+        rm -f portable_swiftlint.zip
+        cp portable_swiftlint/swiftlint ./swiftlint-custom
+        rm -rf portable_swiftlint
       
     - name: Display the path
       run: ls -a
       shell: bash
 
     - name: Lint
-      run: ./swiftlint-custom lint --config .swiftlint.yml --strict
+      run: |
+        ./swiftlint-custom lint --config .swiftlint.yml --strict
+        rm -f swiftlint-custom
 
 #   build:
 #     runs-on: macos-latest
