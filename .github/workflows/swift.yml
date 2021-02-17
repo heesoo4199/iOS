@@ -9,14 +9,14 @@ on:
 jobs:
   
   lint:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
     
     - name: Install SwiftLint v0.40.3
       run: |
-        curl -o portable.zip https://github.com/realm/SwiftLint/releases/download/0.40.3/portable_swiftlint.zip
+        curl -o portable.zip https://github.com/realm/SwiftLint/releases/download/0.40.3/swiftlint_linux.zip
         ls -a
         unzip portable.zip
         mv portable/swiftlint ./swiftlint-custom
