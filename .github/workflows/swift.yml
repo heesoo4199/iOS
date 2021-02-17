@@ -18,6 +18,9 @@ jobs:
       run: ls -a
       shell: bash
   
+    - name: Install SwiftLint v0.40.3
+      run: git clone https://github.com/realm/SwiftLint.git && cd SwiftLint && git checkout 0.40.3 && make install
+
     - name: Lint
       run: swiftlint lint --config .swiftlint.yml --strict
 
